@@ -1,0 +1,11 @@
+# 依赖与构建产物
+node_modules/
+dist/
+
+# 本项目沙箱环境使用的 npm 缓存目录
+.npm-cache/
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db

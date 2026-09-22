@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>太阳系 · Solar System (Three.js)</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!-- 左上角标题与操作提示 -->
+    <header class="hud hud-top">
+      <h1>太阳系 <span>Solar System</span></h1>
+      <p id="hint">拖拽旋转 · 滚轮缩放 · 右键平移 · V 进入遨游</p>
+    </header>
+
+    <!-- 右上角视角模式切换 -->
+    <button id="mode-btn" class="hud mode-btn" type="button" title="切换视角模式 (V)">🚀 自由遨游</button>
+
+    <!-- 加载遮罩 -->
+    <div id="loading" class="loading">
+      <div class="loading__box">
+        <div class="loading__ring"></div>
+        <p id="loading-text">正在加载宇宙… 0%</p>
+      </div>
+    </div>
+
+    <noscript>本页面需要启用 JavaScript 才能运行。</noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000006;
+  font-family: 'Segoe UI', 'Microsoft YaHei', system-ui, sans-serif;
+  color: #dfe8ff;
+}
+
+#app,
+canvas {
+  position: fixed;
+  inset: 0;
+  display: block;
+}
+
+/* ---------- 左上角信息 ---------- */
+.hud {
+  position: fixed;
+  z-index: 10;
+  pointer-events: none;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+.hud-top {
+  top: 18px;
+  left: 22px;
+}
+
+.hud-top h1 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+
+.hud-top h1 span {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  margin-left: 8px;
+}
+
+.hud-top p {
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.55;
+}
+
+/* ---------- 右上角视角模式按钮 ---------- */
+.mode-btn {
+  top: 18px;
+  right: 22px;
+  pointer-events: auto;
+  padding: 8px 18px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #dfe8ff;
+  background: rgba(30, 48, 90, 0.45);
+  border: 1px solid rgba(127, 168, 255, 0.35);
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.mode-btn:hover {
+  background: rgba(52, 80, 140, 0.6);
+  border-color: rgba(160, 195, 255, 0.7);
+}
+
+.mode-btn:active {
+  transform: scale(0.97);
+}
+
+/* ---------- 加载遮罩 ---------- */
+.loading {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 45%, #0a1024 0%, #000004 70%);
+  transition: opacity 0.8s ease;
+}
+
+.loading.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading__box {
+  text-align: center;
+}
+
+.loading__ring {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(120, 160, 255, 0.15);
+  border-top-color: #7fa8ff;
+  animation: spin 1s linear infinite;
+}
+
+.loading__box p {
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.75;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- 错误提示 ---------- */
+.error-tip {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: pre-line; /* 保留错误消息中的换行符 */
+  background: #050510;
+  padding: 24px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #ffb0b0;
+}
