@@ -21,6 +21,7 @@ const CONFIG = {
   cameraFov: 55,
   cameraFar: 2000,
   loadingTimeoutMs: 30000, // 纹理加载兜底：超时后强制撤掉遮罩（升级 8K 后贴图总量约 62MB，放宽到 30s）
+  galaxyRotationSeconds: 600, // 银河天球旋转一圈的秒数：真实绕银心一圈约 2.25 亿年，此处艺术化压缩以形成缓慢视运动
 };
 
 /**
@@ -218,12 +219,22 @@ function initScene() {
   textureLoader = new THREE.TextureLoader(manager);
 }
 
-/** 银河星空天球（内表面贴图） */
+/**
+ * 银河星空天球（内表面贴图）
+ * 缓慢自转模拟太阳系绕银心公转的视运动：真实周期约 2.25 亿年不可感知，
+ * 此处按 galaxyRotationSeconds 艺术化压缩，方向与行星公转一致（远景反向漂移即天体规律的表现）
+ */
 function createBackground() {
   const material = new THREE.MeshBasicMaterial({ color: 0x101018, side: THREE.BackSide, toneMapped: false });
   loadTexture(TEX.milkyWay, material);
   const sky = new THREE.Mesh(new THREE.SphereGeometry(CONFIG.backgroundRadius, 64, 32), material);
   scene.add(sky);
+
+  animatables.push({
+    update: (delta) => {
+      sky.rotation.y += ((Math.PI * 2) / CONFIG.galaxyRotationSeconds) * delta;
+    },
+  });
 }
 
 /** 太阳：自发光球体 + 加色混合光晕 */
