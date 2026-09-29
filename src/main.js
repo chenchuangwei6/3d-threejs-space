@@ -386,8 +386,8 @@ let viewMode = 'orbit';
 const flight = {
   keys: new Set(), // 当前按住的键（e.code）
   velocity: new THREE.Vector3(), // 平滑后的移动速度向量
-  speed: 30, // 基础移动速度（units/s，滚轮可调）
-  minSpeed: 2,
+  speed: 10, // 基础移动速度（units/s，滚轮可调；默认较慢便于贴近观察，远途可滚轮调高）
+  minSpeed: 0.5,
   maxSpeed: 300,
   dragging: false,
   euler: new THREE.Euler(0, 0, 0, 'YXZ'), // YXZ 顺序防止俯仰带出滚转
