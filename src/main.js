@@ -4,8 +4,8 @@ import './style.css';
 
 /* =====================================================================
  * 太阳系 · Three.js 演示
- * - 行星建模：球体 + textures 目录下的 NASA 2k 贴图
- *   （vite.config.js 已把 publicDir 指向 textures，贴图直接以根路径访问）
+ * - 行星建模：球体 + textures 目录下的高清贴图（有 8K 用 8K，否则 2K，
+ *   见 TEX 清单；vite.config.js 已把 publicDir 指向 textures，贴图直接以根路径访问）
  * - 结构：orbitGroup(轨道倾角) > pivot(公转) > system(轨道锚点)
  *          > tiltGroup(自转轴倾角) > mesh(自转)
  * - 比例说明：真实比例下行星小到肉眼不可见，因此尺寸/距离/公转周期
@@ -20,23 +20,26 @@ const CONFIG = {
   backgroundRadius: 500,
   cameraFov: 55,
   cameraFar: 2000,
-  loadingTimeoutMs: 15000, // 纹理加载兜底：超时后强制撤掉遮罩
+  loadingTimeoutMs: 30000, // 纹理加载兜底：超时后强制撤掉遮罩（升级 8K 后贴图总量约 62MB，放宽到 30s）
 };
 
-/** 贴图清单（文件名与 textures 目录一一对应） */
+/**
+ * 贴图清单（文件名与 textures 目录一一对应）
+ * 优先使用最高清版本：有 8K 资源的用 8K；天王星、海王星暂无更高清资源，保持 2K
+ */
 const TEX = {
-  sun: '/2k_sun_太阳.jpg',
-  mercury: '/2k_mercury_水星.jpg',
-  venus: '/2k_venus_surface_金星表面.jpg',
-  earth: '/2k_earth_daymap_地球.jpg',
-  moon: '/2k_moon_月球.jpg',
-  mars: '/2k_mars_火星.jpg',
-  jupiter: '/2k_jupiter_木星.jpg',
-  saturn: '/2k_saturn_土星.jpg',
-  saturnRing: '/2k_saturn_ring_alpha_土星环.png',
-  uranus: '/2k_uranus_天王星.jpg',
-  neptune: '/2k_neptune_海王星.jpg',
-  milkyWay: '/2k_stars_milky_way_银河.jpg',
+  sun: '/8k_sun_太阳.jpg',
+  mercury: '/8k_mercury_水星.jpg',
+  venus: '/8k_venus_surface_金星表面.jpg',
+  earth: '/8k_earth_daymap_地球.jpg',
+  moon: '/8k_moon_月球.jpg',
+  mars: '/8k_mars_火星.jpg',
+  jupiter: '/8k_jupiter_木星.jpg',
+  saturn: '/8k_saturn_土星.jpg',
+  saturnRing: '/8k_saturn_ring_alpha_土星环.png',
+  uranus: '/2k_uranus_天王星.jpg', // 无更高清资源，保持 2K
+  neptune: '/2k_neptune_海王星.jpg', // 无更高清资源，保持 2K
+  milkyWay: '/8k_stars_milky_way_银河.jpg',
 };
 
 /**
